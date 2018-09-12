@@ -1,5 +1,7 @@
 # Docker PHP-Tools
 
+[![Build Status](https://travis-ci.org/ambimax/docker-phptools.svg?branch=master)](https://travis-ci.org/ambimax/docker-phptools)
+
 Collection of php developer tools used for building other docker images.
 
 ### Tools:
@@ -22,3 +24,11 @@ Collection of php developer tools used for building other docker images.
 ### Location
 
 All tools are save to `/tools`
+
+## License
+
+[MIT License](http://choosealicense.com/licenses/mit/)
+
+## Author Information
+
+ - [Tobias Schifftner](https://twitter.com/tschifftner), [ambimax® GmbH](https://www.ambimax.de)
