@@ -1,4 +1,4 @@
-FROM alpine
+FROM php:7.0-cli-alpine3.7
 
 LABEL maintainer="Tobias Schifftner <ts@ambimax.de>"
 
@@ -9,7 +9,8 @@ COPY scripts/xmllint.sh /tools/xmllint
 
 
 # Install curl
-RUN apk add --update \
+RUN apk add --no-cache --update \
+  bash \
   curl \
   && rm -rf /var/lib/apt/lists/* \
   && mkdir -p /tools \
