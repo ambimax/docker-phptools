@@ -7,6 +7,14 @@ env:
     - secure: "WO8zyQzCnAheCnCmhj4/Bg9XqG+Bdx+n1nkrkStD8KP2T+ox2hoDMgnAJUc2XdxgtoMEMTmvmVvDq1A2D60jqotJAoed7J7iT2SnmECIxEQXJhf2icyPboymeOH9x64zbp0iiqw6sK9iiu0IDhGqx36VRf0+XHwq5iJitseP7oZdqaoemTPdXSH8lwCPTnyz9TN0GnmeXaG0qZwLy69GvB6MErEoY9m2ev16ILSNA5kiXugVNfwJMEgaDPvaEWfJGBvarW+f0G9wWdNZa86n2ppAv1wZRZALIdcUGxt0vYbRFt1TboYBkTqyRYi/pPiJNcrsPvuF/JDO+r0GquDNN7Po0qaDTqGgd2awCicIJxpQgb9MG3RWP74jXt9K2OGWcS+IOC8H9GbVlm50ftUKlsmCCRKRp0a2adHCPUUicthcIqez2QDqAc39IKrYdynmBFsu2aqPomTN54/6lgtqZNQPFGII1yoPsDyfoEe0zDs0IS/XzSGIyhC7T9VMtr0/cSHlq6WmwyMerfk6ETyCPWa0yen7d2CtCyZfp2Nbl86fdyzi/RFQC8ROe9yMsIEzwQ03w2OMhN9W5RxK9uAMNdFF3LvRSKYmEAa3t8JYMom3QTcNuJcolXayei5R5CO4Ep46xXI7WP5npp+q1XSTNDzREhD/W4Dj5J1HoYY/oZM="
 
 script:
+  # Test
+  - tools/xmllint.sh .travis/xmllint
+  - tools/phplint.sh .travis/phplint
+
+  # Test defaults
+  - export XMLLINT_DEFAULT_DIR=".travis/xmllint" && tools/xmllint.sh
+  - export PHPLINT_DEFAULT_DIR=".travis/phplint" && tools/phplint.sh
+
   # Build image
   - docker build -t ambimax/phptools .
 
@@ -16,10 +24,10 @@ after_script:
 
 before_deploy:
   # Login to docker hub
-  - docker login -u "${DOCKER_USER}" -p "${DOCKER_PASSWORD}"
+  - echo "${DOCKER_PASSWORD}" | docker login -u "${DOCKER_USER}" --password-stdin
 
 deploy:
   provider: script
   script: docker push ambimax/phptools
-  on:
-    branch: master
+#  on:
+#    branch: master
