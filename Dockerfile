@@ -6,6 +6,8 @@ COPY --from=composer:latest /usr/bin/composer /tools/composer
 
 COPY scripts/phplint.sh /tools/phplint
 COPY scripts/xmllint.sh /tools/xmllint
+COPY scripts/codesniffer.sh /tools/codesniffer
+COPY CodeSniffer /tools/CodeSniffer
 
 
 # Install curl

@@ -22,7 +22,7 @@ script:
   # Test in docker container
   - export DOCKER="docker run --rm -v "$PWD:/travis" -w /travis -it ambimax/phptools"
   - ${DOCKER} /tools/xmllint .travis/xmllint
-  - ${DOCKER} /tools/phplint.sh .travis/phplint
+  - ${DOCKER} /tools/phplint .travis/phplint
 
 
 after_script:
@@ -36,5 +36,5 @@ before_deploy:
 deploy:
   provider: script
   script: docker push ambimax/phptools
-  on:
-    branch: master
+#  on:
+#    branch: master

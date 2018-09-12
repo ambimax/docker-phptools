@@ -23,7 +23,7 @@ command_exists () {
     type "$1" &> /dev/null ;
 }
 
-TARGET=${1%/}
+TARGET=${DEST%/}
 IGNORE_FILES=`find . -type f -name '.xmllint_ignore' | xargs cat`
 FIND_IGNORE_PATTERN=$(printf "! -ipath %s " ${IGNORE_FILES})
 FILES=`find $TARGET -type f -name '*.xml' ${FIND_IGNORE_PATTERN}`

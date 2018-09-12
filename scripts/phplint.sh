@@ -21,7 +21,7 @@ fi
 # Run in parallel:
 # find -L $DEST \( -name '*.php' -o -name '*.phtml' \) -print0 | xargs -0 -n 1 -P 20 php -l
 
-TARGET=${1%/}
+TARGET=${DEST%/}
 IGNORE_FILES=`find . -type f -name '.phplint_ignore' | xargs cat`
 FIND_IGNORE_PATTERN=$(printf "! -ipath %s " ${IGNORE_FILES})
 FILES=`find $TARGET -type f \( -name '*.php' -o -name '*.phtml' \) ${FIND_IGNORE_PATTERN}`
