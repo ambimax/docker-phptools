@@ -38,5 +38,6 @@ printf '%s\n' "${IGNORE_FILES[@]}"
 echo
 
 
-#${TOOLS_DIR}/phpcs.phar --standard=${BASE_DIR}/CodeSniffer/Ecg/ruleset.xml --ignore="${PHPCS_IGNORE}" ${WORKSPACE} || error_exit "CodeSniffer test failed"
 /tools/phpcs2 --standard=/tools/CodeSniffer/Ecg/ruleset.xml --ignore="${PHPCS_IGNORE}" ${WORKSPACE} || error_exit "CodeSniffer test failed"
+
+echo "No CodeSniffer errors found"

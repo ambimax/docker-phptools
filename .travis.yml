@@ -23,6 +23,7 @@ script:
   - export DOCKER="docker run --rm -v "$PWD:/travis" -w /travis -it ambimax/phptools"
   - ${DOCKER} /tools/xmllint .travis/xmllint
   - ${DOCKER} /tools/phplint .travis/phplint
+  - ${DOCKER} /tools/codesniffer .travis/codesniffer
 
 
 after_script:
