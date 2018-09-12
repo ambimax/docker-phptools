@@ -16,8 +16,8 @@ RUN apk add --no-cache --update \
   && mkdir -p /tools \
 #
 # composer
-&& curl -sS -o /builder/composer https://getcomposer.org/download/1.7.1/composer.phar \
-  && echo "1c0e95dc3f33985f9eeabb6f57896c0f9d46b7c9e70ad7bf2210a5508869a8fa  /builder/composer" | sha256sum -c - \
+&& curl -sS -L -o /tools/composer https://getcomposer.org/download/1.7.1/composer.phar \
+  && echo "1c0e95dc3f33985f9eeabb6f57896c0f9d46b7c9e70ad7bf2210a5508869a8fa  /tools/composer" | sha256sum -c - \
 # n98-magerun
 && curl -sS -o /tools/n98-magerun https://files.magerun.net/n98-magerun-1.101.1.phar \
   && echo "3c48fb685e569f2c7c97cca1dfbe2d20e6d7841db594b0d706924f517d8d3fd3  /tools/n98-magerun" | sha256sum -c - \
