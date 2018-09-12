@@ -37,5 +37,5 @@ before_deploy:
 deploy:
   provider: script
   script: docker push ambimax/phptools
-#  on:
-#    branch: master
+  on:
+    branch: master
