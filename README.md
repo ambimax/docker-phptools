@@ -25,6 +25,40 @@ Collection of php developer tools used for building other docker images.
 
 All tools are save to `/tools`
 
+### Helpers
+
+ - codesniffer
+ - phplint
+ - xmllint
+
+## XMLLint
+
+To ignore specific directories or files add a `.xmllint_ignore` file to your repository
+
+```
+app/code/community/Aoe_*
+app/code/core/*
+```
+
+## PHPLint
+
+To ignore specific directories or files add a `.phplint_ignore` file to your repository
+
+```
+src/app/code/community/Aoe_*
+src/modman/app/code/core/*
+```
+
+## CodeSniffer
+
+To ignore specific directories or files add a `.phpcs_ignore` file to your repository
+
+```
+app/code/community/Aoe_*
+app/code/core/*
+```
+
+
 ## License
 
 [MIT License](http://choosealicense.com/licenses/mit/)

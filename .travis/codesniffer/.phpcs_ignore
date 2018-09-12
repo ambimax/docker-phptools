@@ -1,0 +1,4 @@
+.modman/Aoe_TestSetup/lib/aoe_testsetup/PHPUnit_VerboseResultPrinter.php
+.travis/codesniffer/invalid.php
+.travis/phplint/invalid.php
+.travis/phplint/subdir/invalid.php
