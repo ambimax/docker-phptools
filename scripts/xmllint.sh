@@ -8,6 +8,11 @@ function error_exit {
 	exit 1
 }
 
+if [ "$1" == "--help" ]; then
+	echo "Add test directory as parameter, ie. ./xmllint.sh .modman/"
+	exit 0
+fi
+
 if [ -z $XMLLINT_DEFAULT_DIR ]; then
 	XMLLINT_DEFAULT_DIR='.modman'
 fi

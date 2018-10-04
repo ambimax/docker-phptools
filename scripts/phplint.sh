@@ -8,6 +8,12 @@ function error_exit {
 	exit 1
 }
 
+if [ "$1" == "--help" ]; then
+	echo "Add test directory as parameter, ie. ./phplint.sh .modman/"
+	exit 0
+fi
+
+
 if [ -z $PHPLINT_DEFAULT_DIR ]; then
 	PHPLINT_DEFAULT_DIR='.modman'
 fi

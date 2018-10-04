@@ -13,6 +13,12 @@ function error_exit {
 	exit 1
 }
 
+if [ "$1" == "--help" ]; then
+	echo "There is no help available"
+	exit 0
+fi
+
+
 if [ -z $CODESNIFFER_DEFAULT_DIR ]; then
 	CODESNIFFER_DEFAULT_DIR='.modman'
 fi
