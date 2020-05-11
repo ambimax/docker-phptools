@@ -32,7 +32,7 @@ after_script:
 
 before_deploy:
   # Login to docker hub
-  - echo "${DOCKER_PASSWORD}" | docker login -u "${DOCKER_USER}" --password-stdin
+  - echo ${DOCKER_PASSWORD} | docker login -u ${DOCKER_USER} --password-stdin
 
 deploy:
   provider: script
