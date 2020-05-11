@@ -22,7 +22,7 @@ RUN apk add --no-cache --update \
 && curl -sS -o /tools/n98-magerun https://files.magerun.net/n98-magerun-1.103.3.phar \
   && echo "c6f41a21e53f9253a59eaa50fc76375a5e1e30898968cc534eb57c0d4ffdeec0  /tools/n98-magerun" | sha256sum -c - \
 # mhsendmail
-&& curl -sS -o /tools/mhsendmail https://github.com/mailhog/mhsendmail/releases/download/v0.2.0/mhsendmail_linux_amd64 \
+&& wget -O /tools/mhsendmail https://github.com/mailhog/mhsendmail/releases/download/v0.2.0/mhsendmail_linux_amd64 \
   && echo "be5acdc8ce3f380dcb9d02caed77c845affa9a447d0860961529b699dcd0c613  /tools/mhsendmail" | sha256sum -c - \
 # zettr
 && curl -sS -o /tools/zettr https://raw.githubusercontent.com/tschifftner/zettr/master/zettr.phar \
