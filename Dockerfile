@@ -39,6 +39,9 @@ RUN apk add --no-cache --update \
 # phpunit7
 && curl -sS -o /tools/phpunit7 https://phar.phpunit.de/phpunit-7.3.2.phar \
   && echo "9a2d8582f149b6c800487c907bebc93b3dd2f2871e16f9b9c26c618081778440  /tools/phpunit7" | sha256sum -c - \
+# phpunit9
+&& wget -O /tools/phpunit9 https://phar.phpunit.de/phpunit-9.1.4.phar \
+  && echo "87c5c7376a142f7fc00c44d8ff0b36be3bd5205d3609e05e085270f90c3909da  /tools/phpunit9" | sha256sum -c - \
 # codecept
 && curl -sS -o /tools/codecept https://codeception.com/codecept.phar \
   && echo "e41ba47e3576e72b8bd806e11d438a6155198f183cf7efd459e5e575faf8be36  /tools/codecept" | sha256sum -c - \
