@@ -29,7 +29,7 @@ RUN apk add --no-cache --update \
   && echo "527dcabc6b080bdaa65d253d1982ffdb7b5b337d5df3ad285b93f13ee256fc55  /tools/zettr" | sha256sum -c - \
 # modman
 && curl -sS -o /tools/modman https://raw.githubusercontent.com/colinmollenhour/modman/master/modman \
-  && echo "6db573ade6802408fa7a509d8fa045b7cdf57d703e89d0b93e457dc2466b5176  /tools/modman" | sha256sum -c - \
+  && echo "490a382be6faf4a90b516c8ac425b432817e650d840fcd8495497de33d4d4cf2  /tools/modman" | sha256sum -c - \
 # phpunit5
 && curl -sS -o /tools/phpunit5 https://phar.phpunit.de/phpunit-5.7.27.phar \
   && echo "f0300a13f2653bee10b0ce24dbc8d94e65dc9be8966d822b9e455b6b294be16e  /tools/phpunit5" | sha256sum -c - \
@@ -60,6 +60,9 @@ RUN apk add --no-cache --update \
 # code beautifier
 && curl -sS -L -o /tools/phpcbf2 https://github.com/squizlabs/PHP_CodeSniffer/releases/download/2.9.1/phpcbf.phar \
   && echo "a1bde49a936eb38de4b207aa73e3faa4fea82c6ca80ec9eb06b184712673b1ae  /tools/phpcbf2" | sha256sum -c - \
+# code beautifier
+&& wget -O /tools/php-cs-fixer https://github.com/FriendsOfPHP/PHP-CS-Fixer/releases/download/v2.16.3/php-cs-fixer.phar \
+  && echo "0b16375c2356d4a00c21c34d61953b154549670503180a622fb6adb77030b2a4  /tools/php-cs-fixer" | sha256sum -c - \
 #
 # set permissions
 && chmod +x /tools/*

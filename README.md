@@ -16,6 +16,8 @@ Collection of php developer tools used for building other docker images.
  - phpunit5
  - phpunit6
  - phpunit7
+ - phpunit9
+ - php-cs-fixer
  - mhsendmail
  - modman
  - n98-magerun
