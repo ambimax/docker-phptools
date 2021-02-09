@@ -6,7 +6,7 @@ if [[ "$(docker images -q ambimax/phptools:latest 2> /dev/null)" == "" ]]; then
 fi
 
 # Test in docker container
-export DOCKER="docker run --rm -v "$PWD:/travis" -w /travis -it ambimax/phptools"
+export DOCKER="docker run --rm -v "$PWD:/travis" -w /travis -i ambimax/phptools"
 
 ${DOCKER} /tools/xmllint .travis/xmllint
 ${DOCKER} /tools/phplint .travis/phplint
