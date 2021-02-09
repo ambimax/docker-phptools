@@ -12,9 +12,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Prepare environment
-        run: bash ${GITHUB_WORKSPACE}/.github/scripts/prepare-workflow.sh
-
       - name: Test scripts
         run: make local-tests
 
