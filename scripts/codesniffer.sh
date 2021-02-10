@@ -3,23 +3,31 @@
 # @author Tobias Schifftner, ambimax® GmbH
 #
 
-# Get absolute path to main directory
-ABSPATH=$(cd "${0%/*}" 2>/dev/null; echo "${PWD}/${0##*/}")
-TOOLS_DIR=`dirname "${ABSPATH}"`
-BASE_DIR=`dirname "${TOOLS_DIR}"`
+set -e
+
+# ----------------------------------
+# Colors
+# ----------------------------------
+NOCOLOR='\033[0m'
+RED='\033[0;31m'
+GREEN='\033[0;32m'
 
 function error_exit {
-	echo "$1" 1>&2
+	echo -e "${RED}${1}${NOCOLOR}" 1>&2
 	exit 1
 }
 
-if [ -z $CODESNIFFER_DEFAULT_DIR ]; then
+function success_message {
+	echo -e "${GREEN}${1}${NOCOLOR}"
+}
+
+if [ -z "$CODESNIFFER_DEFAULT_DIR" ]; then
 	CODESNIFFER_DEFAULT_DIR='.modman'
 fi
 
 DEST=${1:-$CODESNIFFER_DEFAULT_DIR}
 
-if [ ! -d $DEST ] ; then
+if [ ! -d "$DEST" ] ; then
     error_exit "Invalid dir $DEST"
 fi
 
@@ -27,8 +35,8 @@ fi
 # find -L $1 \( -name '*.php' -o -name '*.phtml' \) -print0 | xargs -0 -n 1 -P 20 php -l
 
 WORKSPACE=${DEST%/}
-PHPCS_IGNORE=$(find . -type f -name '.phpcs_ignore' | xargs cat | paste -s -d, -)
-IGNORE_FILES=`find . -type f -name '.phpcs_ignore' | xargs cat`
+PHPCS_IGNORE=$(find . -type f -name '.phpcs_ignore' -print0 | xargs cat | paste -s -d, -)
+IGNORE_FILES=$(find . -type f -name '.phpcs_ignore' -print0 | xargs cat)
 
 echo
 echo "CodeSniffer"
@@ -40,4 +48,4 @@ echo
 
 /tools/phpcs2 --standard=/tools/CodeSniffer/Ecg/ruleset.xml --ignore="${PHPCS_IGNORE}" ${WORKSPACE} || error_exit "CodeSniffer test failed"
 
-echo "No CodeSniffer errors found"
+success_message "No CodeSniffer errors found"
