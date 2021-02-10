@@ -3,18 +3,31 @@
 # @author Tobias Schifftner, ambimax® GmbH
 #
 
+set -e
+
+# ----------------------------------
+# Colors
+# ----------------------------------
+NOCOLOR='\033[0m'
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+
 function error_exit {
-	echo "$1" 1>&2
+	echo -e "${RED}${1}${NOCOLOR}" 1>&2
 	exit 1
 }
 
-if [ -z $PHPLINT_DEFAULT_DIR ]; then
+function success_message {
+	echo -e "${GREEN}${1}${NOCOLOR}"
+}
+
+if [ -z "$PHPLINT_DEFAULT_DIR" ]; then
 	PHPLINT_DEFAULT_DIR='.modman'
 fi
 
 DEST=${1:-$PHPLINT_DEFAULT_DIR}
 
-if [ ! -d $DEST ] ; then
+if [ ! -d "$DEST" ] ; then
     error_exit "Invalid dir $DEST"
 fi
 
@@ -49,4 +62,4 @@ for i in $FILES; do
     echo $sha256sum >> $TMP_FILE
 done
 
-echo "No PHP syntax errors detected in $DEST"
+success_message "No PHP syntax errors detected in $DEST"

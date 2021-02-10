@@ -3,19 +3,32 @@
 # @author Tobias Schifftner, ambimax® GmbH
 #
 
+set -e
+
+# ----------------------------------
+# Colors
+# ----------------------------------
+NOCOLOR='\033[0m'
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+
 function error_exit {
-	echo "$1" 1>&2
+	echo -e "${RED}${1}${NOCOLOR}" 1>&2
 	exit 1
 }
 
-if [ -z $XMLLINT_DEFAULT_DIR ]; then
+function success_message {
+	echo -e "${GREEN}${1}${NOCOLOR}"
+}
+
+if [ -z "$XMLLINT_DEFAULT_DIR" ]; then
 	XMLLINT_DEFAULT_DIR='.modman'
 fi
 
 DEST=${1:-$XMLLINT_DEFAULT_DIR}
 
 
-if [ ! -d $DEST ] ; then
+if [ ! -d "$DEST" ] ; then
     error_exit "Invalid dir $DEST"
 fi
 
@@ -24,9 +37,9 @@ command_exists () {
 }
 
 TARGET=${DEST%/}
-IGNORE_FILES=`find . -type f -name '.xmllint_ignore' | xargs cat`
+IGNORE_FILES=$(find . -type f -name '.xmllint_ignore' | xargs cat)
 FIND_IGNORE_PATTERN=$(printf "! -ipath %s " ${IGNORE_FILES})
-FILES=`find $TARGET -type f -name '*.xml' ${FIND_IGNORE_PATTERN}`
+FILES=$(find $TARGET -type f -name '*.xml' ${FIND_IGNORE_PATTERN})
 
 echo
 echo "Checking $DEST"
@@ -66,4 +79,4 @@ else
     done
 fi
 
-echo "No XML syntax errors detected in $1"
+success_message "No XML syntax errors detected in $1"

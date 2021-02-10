@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
 
+set -e
+
 # Tests
-scripts/xmllint.sh .travis/xmllint
-scripts/phplint.sh .travis/phplint
+scripts/xmllint.sh tests/xmllint
+scripts/phplint.sh tests/phplint
 
 # Test defaults
-export XMLLINT_DEFAULT_DIR=".travis/xmllint" && scripts/xmllint.sh
-export PHPLINT_DEFAULT_DIR=".travis/phplint" && scripts/phplint.sh
+export XMLLINT_DEFAULT_DIR="tests/xmllint" && scripts/xmllint.sh
+export PHPLINT_DEFAULT_DIR="tests/phplint" && scripts/phplint.sh
