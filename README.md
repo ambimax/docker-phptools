@@ -1,6 +1,6 @@
 # Docker PHP-Tools
 
-[![Build Status](https://travis-ci.org/ambimax/docker-phptools.svg?branch=master)](https://travis-ci.org/ambimax/docker-phptools)
+[![Build Status](https://github.com/ambimax/docker-phptools/workflows/.github/workflows/default.yml/badge.svg?branch=main)](https://github.com/ambimax/docker-phptools/actions)
 
 Collection of php developer tools used for building other docker images.
 
