@@ -9,3 +9,6 @@ local-tests:
 
 docker-tests:
 	sh .github/scripts/docker-tests.sh
+
+run:
+	docker run --rm -it ambimax/phptools bash

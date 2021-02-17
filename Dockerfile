@@ -2,6 +2,8 @@ FROM php:7.4-cli-alpine3.12
 
 LABEL maintainer="Tobias Schifftner <ts@ambimax.de>"
 
+ENV PATH="/tools:${PATH}"
+
 COPY install.sh /usr/local/bin/addPackage
 COPY scripts/phplint.sh /tools/phplint
 COPY scripts/xmllint.sh /tools/xmllint
@@ -14,6 +16,11 @@ RUN apk add --no-cache --update \
   && rm -rf /var/lib/apt/lists/* \
   && mkdir -p /tools \
   && chmod +x /usr/local/bin/addPackage \
+# Add wait-for-it.sh
+&& addPackage \
+  --url "https://raw.githubusercontent.com/vishnubob/wait-for-it/81b1373f17855a4dc21156cfe1694c31d7d1792e/wait-for-it.sh" \
+  --path "/tools/wait-for-it.sh" \
+  --sha256sum "b7a04f38de1e51e7455ecf63151c8c7e405bd2d45a2d4e16f6419db737a125d6" \
 # Add mhsendmail
 && addPackage \
   --url "https://github.com/mailhog/mhsendmail/releases/download/v0.2.0/mhsendmail_linux_amd64" \
