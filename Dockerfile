@@ -2,6 +2,8 @@ FROM php:7.4-cli-alpine3.12
 
 LABEL maintainer="Tobias Schifftner <ts@ambimax.de>"
 
+ENV PATH="/tools:${PATH}"
+
 COPY install.sh /usr/local/bin/addPackage
 COPY scripts/phplint.sh /tools/phplint
 COPY scripts/xmllint.sh /tools/xmllint
@@ -14,6 +16,11 @@ RUN apk add --no-cache --update \
   && rm -rf /var/lib/apt/lists/* \
   && mkdir -p /tools \
   && chmod +x /usr/local/bin/addPackage \
+# Add wait-for-it.sh
+&& addPackage \
+  --url "https://raw.githubusercontent.com/vishnubob/wait-for-it/81b1373f17855a4dc21156cfe1694c31d7d1792e/wait-for-it.sh" \
+  --path "/tools/wait-for-it.sh" \
+  --sha256sum "b7a04f38de1e51e7455ecf63151c8c7e405bd2d45a2d4e16f6419db737a125d6" \
 # Add mhsendmail
 && addPackage \
   --url "https://github.com/mailhog/mhsendmail/releases/download/v0.2.0/mhsendmail_linux_amd64" \
@@ -26,9 +33,9 @@ RUN apk add --no-cache --update \
   --sha256sum "e70b1024c194e07db02275dd26ed511ce620ede45c1e237b3ef51d5f8171348d" \
 # Add composer2
 && addPackage \
-  --url "https://getcomposer.org/download/2.0.9/composer.phar" \
+  --url "https://getcomposer.org/download/2.1.7/composer.phar" \
   --path "/tools/composer2" \
-  --sha256sum "24faa5bc807e399f32e9a21a33fbb5b0686df9c8850efabe2c047c2ccfb9f9cc" \
+  --sha256sum "2936587e1babafa50d15eacf9fe775e825ed2e1f051c61acd3fa4f6af7720e94" \
 # Add n98-magerun
 && addPackage \
   --url "https://files.magerun.net/n98-magerun-1.103.3.phar" \
@@ -81,9 +88,9 @@ RUN apk add --no-cache --update \
   --sha256sum "5ead8f8f25c90e9cf5383e4c6f8d9c503f12ec924ba03a2e4aa9c483ebc154b9" \
 # Add php-messdetector
 && addPackage \
-  --url "https://phpmd.org/static/latest/phpmd.phar" \
+  --url "https://github.com/phpmd/phpmd/releases/download/2.10.2/phpmd.phar" \
   --path "/tools/phpmd" \
-  --sha256sum "e3648204e9b010f44203acaed5d03e38a91d75d31dae7c7a1048e2614fbea564" \
+  --sha256sum "5d16d2571ed029ce94a8dfcec2f50a280f9c896a1454eb93014474841861aa01" \
 # Add php-codesniffer 3
 && addPackage \
   --url "https://github.com/squizlabs/PHP_CodeSniffer/releases/download/3.5.8/phpcs.phar" \
